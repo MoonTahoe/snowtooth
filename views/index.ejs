@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <%- include parts/head %>
+    </head>
+
+    <body>
+
+        <%- include parts/nav %>
+
+        <h1><%= title %></h1>
+
+        <p>Welcome to <%= title %></p>
+
+        <% for (var i = 0; i < imgs.length; i++) { %>
+
+            <img src="<%= imgs[i].url %>" alt="<%= imgs[i].title%>" />
+
+        <% } %>
+
+        <%- include parts/footer %>
+
+    </body>
+
+</html>

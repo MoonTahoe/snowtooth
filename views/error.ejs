@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <%- include parts/head %>
+    </head>
+
+    <body>
+
+        <%- include parts/nav %>
+
+        <h1><%= message %></h1>
+        <h2><%= error.status %></h2>
+        <pre><%= error.stack %></pre>
+
+        <%- include parts/footer %>
+
+    </body>
+
+</html>
+
