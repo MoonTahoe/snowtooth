@@ -1,14 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-
-var homeSchema = mongoose.Schema({
-    id: String,
-    url: String,
-    text: String
-});
-
-var home = mongoose.model('home', homeSchema, 'home');
+var home = require('../models/home').home;
 
 router.get('/', function (req, res) {
 
