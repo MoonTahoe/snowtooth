@@ -1,28 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var home = require('../models/home').home;
+var calendar = require('../models/calendar').calendar;
 
 router.get('/', function (req, res) {
 
+    home.find(function (err, imgs) {
 
-    home.find(function (err, docs) {
+        if (err) throw err;
+        calendar.find().sort({ 'start': 1 }).limit(4).exec(function (err, events) {
 
-        var model;
-
-        if (err) {
-            throw err;
-        } else {
-
+            if (err) throw err;
             res.render('index', {
                 title: 'Snowtooth Mountain',
                 description: 'The official website for the snowtooth ski resort',
-                imgs: docs
+                imgs: imgs,
+                calendar: events
             });
 
-        }
+        });
 
     });
-
 
 });
 

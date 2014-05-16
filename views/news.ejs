@@ -9,9 +9,19 @@
 
         <%- include parts/nav %>
 
-        <h1><%= title %></h1>
+        <section id="news" class="main">
 
-        <p>Welcome to <%= title %></p>
+            <h1><%= title %></h1>
+
+            <% for(var i = 0; i < news.length; i++) { %>
+            <article class="news-item">
+                <h1><a href="/news/<%= news[i].title.replace(/ /g, '-') %>"><%= news[i].title %></a></h1>
+                <img src="<%= news[i].img %>" alt=""/>
+                <p><%= news[i].description %></p>
+            </article>
+            <% } %>
+
+        </section>
 
         <%- include parts/footer %>
 

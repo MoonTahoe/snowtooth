@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <%- include parts/head %>
+    </head>
+
+    <body>
+
+        <%- include parts/nav %>
+
+            <section id="news-<%= title.replace(/ /g, '-') %>"  class="main">
+
+                <h1><%= title %></h1>
+
+                <img src="<%= img %>" alt=""/>
+
+                <p><%= description %></p>
+
+                <p>Posted on: <%= date %> by <%= author %>.</p>
+
+                <hr/>
+
+                <%- content %>
+
+            </section>
+
+        <%- include parts/footer %>
+
+    </body>
+
+</html>

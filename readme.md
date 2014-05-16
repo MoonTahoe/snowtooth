@@ -241,5 +241,5 @@ Home Model and Route
 
 4.  Repeat this process for calendar and news
 
-5.  Edit the views and make sure all the data is being displayed
+5.  Finish all of the basic routing and views
 

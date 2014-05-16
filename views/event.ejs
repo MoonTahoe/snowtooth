@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <%- include parts/head %>
+    </head>
+
+    <body>
+
+        <%- include parts/nav %>
+
+            <article id="event-<%= _id %>" class="main">
+
+                <h1><%= title %></h1>
+                <p><span class="event-start"><%= start %></span> - <span class="event-end"><%= end %></span></p>
+                <img src="<%= img %>" alt="" />
+                <p><%= description %></p>
+
+                <hr />
+
+                <%- html %>
+
+            </article>
+
+        <%- include parts/footer %>
+
+    </body>
+
+</html>
