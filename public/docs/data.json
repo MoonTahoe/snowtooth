@@ -1,0 +1,443 @@
+{
+    "project": {},
+    "files": {
+        "models\\calendar.js": {
+            "name": "models\\calendar.js",
+            "modules": {},
+            "classes": {
+                "Models.calendar": 1
+            },
+            "fors": {
+                "Models.calendar": 1
+            },
+            "namespaces": {}
+        },
+        "models\\home.js": {
+            "name": "models\\home.js",
+            "modules": {},
+            "classes": {
+                "Models.home": 1
+            },
+            "fors": {
+                "Models.home": 1
+            },
+            "namespaces": {}
+        },
+        "models\\news.js": {
+            "name": "models\\news.js",
+            "modules": {},
+            "classes": {
+                "Models.news": 1
+            },
+            "fors": {
+                "Models.news": 1
+            },
+            "namespaces": {}
+        },
+        "app.js": {
+            "name": "app.js",
+            "modules": {
+                "snowtooth app": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "snowtooth app": {
+            "name": "snowtooth app",
+            "submodules": {},
+            "classes": {
+                "Models.calendar": 1,
+                "Models.home": 1,
+                "Models.news": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "models\\news.js",
+            "line": 55,
+            "description": "Snowtooth Express Website\n=========================\nAn example application using __express__, __ejs__, and __mongoose__.  This is a content driven web application\nfor a fake ski resort.\n\napp.js\n------\n* Opens snowtooth database connection\n* Prints a list of collection names once the connection has opened\n* Attaches __req.db__ database to routing requests\n* Adds favorite Icon\n* Parses cookies\n* Parses POST request bodies\n* Parses json request bodies\n* Adds routing\n* Handles Errors\n* Attaches __req.ajax__ to request headers with json\n* Enables CORS for json requests",
+            "uses": [
+                "express",
+                "ejs",
+                "mongoose",
+                "static-favicon",
+                "morgan",
+                "cookie-parser",
+                "body-parser",
+                "debug"
+            ]
+        }
+    },
+    "classes": {
+        "Models.calendar": {
+            "name": "Models.calendar",
+            "shortname": "Models.calendar",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "snowtooth app",
+            "file": "models\\calendar.js",
+            "line": 64,
+            "description": "A data model containing the snowtooth events calendar collection",
+            "uses": [
+                "mongoose"
+            ]
+        },
+        "Models.home": {
+            "name": "Models.home",
+            "shortname": "Models.home",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "snowtooth app",
+            "file": "models\\home.js",
+            "line": 32,
+            "description": "A data model containing the snowtooth home collection containing the details for\nthe main home page marketing box",
+            "uses": [
+                "mongoose"
+            ]
+        },
+        "Models.news": {
+            "name": "Models.news",
+            "shortname": "Models.news",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "snowtooth app",
+            "file": "models\\news.js",
+            "line": 55,
+            "description": "A data model containing the snowtooth news collection",
+            "uses": [
+                "mongoose"
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "models\\calendar.js",
+            "line": 5,
+            "description": "A brief unique string id for for the event to be \\\ndisplayed on the home page",
+            "itemtype": "property",
+            "name": "id",
+            "type": "{String}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\calendar.js",
+            "line": 14,
+            "description": "A title for the event",
+            "itemtype": "property",
+            "name": "title",
+            "type": "{String}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\calendar.js",
+            "line": 22,
+            "description": "An image for the event",
+            "itemtype": "property",
+            "name": "img",
+            "type": "{String}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\calendar.js",
+            "line": 30,
+            "description": "The date and time that the event begins",
+            "itemtype": "property",
+            "name": "start",
+            "type": "{Date}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\calendar.js",
+            "line": 38,
+            "description": "The date and time that the event ends",
+            "itemtype": "property",
+            "name": "end",
+            "type": "{Date}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\calendar.js",
+            "line": 46,
+            "description": "A description of the event",
+            "itemtype": "property",
+            "name": "description",
+            "type": "{String}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\calendar.js",
+            "line": 54,
+            "description": "Any HTML content that is associated with the event",
+            "itemtype": "property",
+            "name": "html",
+            "type": "{String}",
+            "class": "Models.calendar"
+        },
+        {
+            "file": "models\\home.js",
+            "line": 5,
+            "description": "A one word unique id that is used as the DOM element id\nfor this home page box",
+            "itemtype": "property",
+            "name": "id",
+            "type": "{String}",
+            "class": "Models.home"
+        },
+        {
+            "file": "models\\home.js",
+            "line": 14,
+            "description": "The url for the image that is to appear on the home page",
+            "itemtype": "property",
+            "name": "url",
+            "type": "{String}",
+            "class": "Models.home"
+        },
+        {
+            "file": "models\\home.js",
+            "line": 22,
+            "description": "The text string to appear with the image on the home page",
+            "itemtype": "property",
+            "name": "text",
+            "type": "{String}",
+            "class": "Models.home"
+        },
+        {
+            "file": "models\\news.js",
+            "line": 5,
+            "description": "The title for the news article",
+            "itemtype": "property",
+            "name": "title",
+            "type": "{String}",
+            "class": "Models.news"
+        },
+        {
+            "file": "models\\news.js",
+            "line": 13,
+            "description": "The url for the image that relates to the news article",
+            "itemtype": "property",
+            "name": "img",
+            "type": "{String}",
+            "class": "Models.news"
+        },
+        {
+            "file": "models\\news.js",
+            "line": 21,
+            "description": "A brief description of the news article",
+            "itemtype": "property",
+            "name": "description",
+            "type": "{String}",
+            "class": "Models.news"
+        },
+        {
+            "file": "models\\news.js",
+            "line": 29,
+            "description": "The main html content for the news article",
+            "itemtype": "property",
+            "name": "content",
+            "type": "{String}",
+            "class": "Models.news"
+        },
+        {
+            "file": "models\\news.js",
+            "line": 37,
+            "description": "The name of the person who wrote the article",
+            "itemtype": "property",
+            "name": "author",
+            "type": "{String}",
+            "class": "Models.news"
+        },
+        {
+            "file": "models\\news.js",
+            "line": 45,
+            "description": "The date that the news article was writeen",
+            "itemtype": "property",
+            "name": "date",
+            "type": "{Date}",
+            "class": "Models.news"
+        },
+        {
+            "file": "app.js",
+            "line": 9,
+            "description": "Connects to the snowtooth mongo database",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 15,
+            "description": "Displays any database errors",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 22,
+            "description": "Prints out a list of connections when teh database opens",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 38,
+            "description": "Loads routing modules",
+            "type": "{router|exports}",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 47,
+            "description": "The Express app instance",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 52,
+            "description": "Sets the view engine as ejs and the views directory to ./views",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 58,
+            "description": "Handles Icons",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 63,
+            "description": "Provides Developer logging in the console",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 68,
+            "description": "Parson JSON response bodies",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 73,
+            "description": "Parses POST response bodies",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 78,
+            "description": "Parses request cookies",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 83,
+            "description": "Serves files from the static directory first",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 88,
+            "description": "Adds the db to each request, in case any route wants to use it",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 96,
+            "description": "Sets up routs from seperate files",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 104,
+            "description": "Catch any leftover 404 errors and display them in the error template",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 113,
+            "description": "Catch any leftover Errors and print out the stack trace for developers",
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 126,
+            "description": "Catch any leftover Errors and print out the stack trace",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nConnects to the snowtooth mongo database",
+            "line": " app.js:9"
+        },
+        {
+            "message": "Missing item type\nDisplays any database errors",
+            "line": " app.js:15"
+        },
+        {
+            "message": "Missing item type\nPrints out a list of connections when teh database opens",
+            "line": " app.js:22"
+        },
+        {
+            "message": "Missing item type\nLoads routing modules",
+            "line": " app.js:38"
+        },
+        {
+            "message": "Missing item type\nThe Express app instance",
+            "line": " app.js:47"
+        },
+        {
+            "message": "Missing item type\nSets the view engine as ejs and the views directory to ./views",
+            "line": " app.js:52"
+        },
+        {
+            "message": "Missing item type\nHandles Icons",
+            "line": " app.js:58"
+        },
+        {
+            "message": "Missing item type\nProvides Developer logging in the console",
+            "line": " app.js:63"
+        },
+        {
+            "message": "Missing item type\nParson JSON response bodies",
+            "line": " app.js:68"
+        },
+        {
+            "message": "Missing item type\nParses POST response bodies",
+            "line": " app.js:73"
+        },
+        {
+            "message": "Missing item type\nParses request cookies",
+            "line": " app.js:78"
+        },
+        {
+            "message": "Missing item type\nServes files from the static directory first",
+            "line": " app.js:83"
+        },
+        {
+            "message": "Missing item type\nAdds the db to each request, in case any route wants to use it",
+            "line": " app.js:88"
+        },
+        {
+            "message": "Missing item type\nSets up routs from seperate files",
+            "line": " app.js:96"
+        },
+        {
+            "message": "Missing item type\nCatch any leftover 404 errors and display them in the error template",
+            "line": " app.js:104"
+        },
+        {
+            "message": "Missing item type\nCatch any leftover Errors and print out the stack trace for developers",
+            "line": " app.js:113"
+        },
+        {
+            "message": "Missing item type\nCatch any leftover Errors and print out the stack trace",
+            "line": " app.js:126"
+        }
+    ]
+}
