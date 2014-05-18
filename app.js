@@ -6,24 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+//  Connect to the apps database
 mongoose.connect('mongodb://localhost/snowtooth');
-var db = mongoose.connection;
-db.on('error', function(err) {
-    console.log(err.message);
-});
-
-db.once('open', function() {
-    console.log("Connected to Mongodb");
-    mongoose.connection.db.collectionNames(function (err, collectionNames) {
-       if (err) {
-           console.log("Error Listing Tables");
-       } else {
-           collectionNames.forEach(function(name) {
-               console.log("'%s'", name.name);
-           });
-       }
-    });
-});
 
 //Requireing our routes
 var routes = require('./routes/index');
@@ -43,12 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Passing the database along
-app.use(function(req, res, next) {
-    req.db = db;
-    next();
-});
 
 // Our Main Routes
 app.use('/', routes);
