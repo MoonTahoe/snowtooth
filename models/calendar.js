@@ -10,11 +10,17 @@ var calendarSchema = mongoose.Schema({
     html: String
 });
 
-var model = mongoose.model('calendar', calendarSchema, 'calendar');
+var dbModel = mongoose.model('calendar', calendarSchema, 'calendar');
+var model = dbModel;
 
 module.exports = {
 
-    model: model,
+    injectModel: function (m) {
+        model = m;
+    },
+    resetModel: function() {
+        model = dbModel;
+    },
     fetch: function (done) {
 
         var count,
