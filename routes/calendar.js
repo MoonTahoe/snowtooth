@@ -1,25 +1,38 @@
 var express = require('express');
 var router = express.Router();
-var calendar = require('../models/calendar');
+var calendarModel = require('../models/calendar');
 
-router.get('/', function (req, res) {
+var dataModel = calendarModel;
 
-    calendar.fetch(function(events) {
+function getCalendar(req, res) {
+    dataModel.fetch(function(events) {
         res.render('calendar', {
             title: 'Events at Snowtooth',
             description: 'When the skiing is over the fun begins, check out these awesome events',
             events: events
         });
     });
+}
 
-});
-
-router.get('/:title', function(req, res) {
-
-    calendar.fetch(req.params.title.replace(/-/g,' '), function(event) {
+function getEvent(req, res) {
+    dataModel.fetch(req.params.title.replace(/-/g,' '), function(event) {
         res.render('event', event);
     });
+}
 
-});
+router.get('/', getCalendar);
+router.get('/:title', getEvent);
 
-module.exports = router;
+module.exports = {
+    router: router,
+    get: {
+        calendar: getCalendar,
+        event: getEvent
+    },
+    setModel: function(m) {
+        dataModel = m;
+    },
+    resetModel: function() {
+        dataModel = calendarModel;
+    }
+};

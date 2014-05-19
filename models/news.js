@@ -9,11 +9,18 @@ var newsSchema = mongoose.Schema({
     date: Date
 });
 
-var model = mongoose.model('news', newsSchema, 'news');
+var dbModel = mongoose.model('news', newsSchema, 'news');
+var model = dbModel;
 
 module.exports = {
 
     model: model,
+    injectModel: function (m) {
+        model = m;
+    },
+    resetModel: function() {
+        model = dbModel;
+    },
     fetch: function (done) {
 
         var count,

@@ -5,10 +5,7 @@ var calendar = require('../models/calendar');
 
 router.get('/', function (req, res) {
 
-    home.find(function (err, imgs) {
-
-        if (err) throw err;
-
+    home.fetch(function (imgs) {
         calendar.fetch(4, function(events) {
             res.render('index', {
                 title: 'Snowtooth Mountain',
@@ -17,7 +14,6 @@ router.get('/', function (req, res) {
                 calendar: events
             });
         });
-
     });
 
 });

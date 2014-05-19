@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Our Main Routes
 app.use('/', routes);
 app.use('/users', users);
-app.use('/calendar', calendar);
+app.use('/calendar', calendar.router);
 app.use('/news', news);
 
 /// catch 404 and forward to error handler
