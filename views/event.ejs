@@ -9,16 +9,18 @@
 
         <%- include parts/nav %>
 
-            <article id="event-<%= _id %>" class="main">
+            <article id="<%= _id %>" class="main event">
 
-                <h1><%= title %></h1>
-                <p><span class="event-start"><%= start %></span> - <span class="event-end"><%= end %></span></p>
+                <h1 class="title"><%= title %></h1>
+                <p class="times"><span class="event-start"><%= start %></span> - <span class="event-end"><%= end %></span></p>
                 <img src="<%= img %>" alt="" />
-                <p><%= description %></p>
+                <p class="description"><%= description %></p>
 
                 <hr />
 
-                <%- html %>
+                <div class="content">
+                    <%- html %>
+                </div>
 
             </article>
 

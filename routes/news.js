@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var news = require('../models/news').news;
+var news = require('../models/news');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
 
-    news.find().sort({ 'date': 1 }).exec(function (err, articles) {
+    news.fetch(function(articles) {
 
-        if (err) throw err;
         res.render('news', {
             title: 'Snowtooth News',
             description: 'Check out what is happening around the mountian',
@@ -20,10 +19,9 @@ router.get('/', function(req, res) {
 
 router.get('/:title', function(req, res) {
 
-    news.findOne({ title: req.params.title.replace(/-/g, ' ') }, function(err, article) {
-        if (err) throw err;
+    news.fetch(req.params.title.replace(/-/g, ' '), function(article) {
         res.render('article', article);
-    })
+    });
 
 });
 

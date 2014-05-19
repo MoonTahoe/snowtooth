@@ -9,19 +9,21 @@
 
         <%- include parts/nav %>
 
-            <section id="news-<%= title.replace(/ /g, '-') %>"  class="main">
+            <section id="news-<%= title.replace(/ /g, '-') %>"  class="main news-article">
 
                 <h1><%= title %></h1>
 
                 <img src="<%= img %>" alt=""/>
 
-                <p><%= description %></p>
+                <p class="description"><%= description %></p>
 
-                <p>Posted on: <%= date %> by <%= author %>.</p>
+                <p>Posted on: <span class="data"><%= date %></span> by <span class="author"><%= author %></span>.</p>
 
                 <hr/>
 
-                <%- content %>
+                <div class="content">
+                    <%- content %>
+                </div>
 
             </section>
 
