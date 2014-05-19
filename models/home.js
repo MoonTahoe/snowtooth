@@ -6,7 +6,6 @@ var homeSchema = mongoose.Schema({
     text: String
 });
 
-
 var dbModel = mongoose.model('home', homeSchema, 'home');
 var model = dbModel;
 

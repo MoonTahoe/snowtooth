@@ -18,13 +18,18 @@ describe('Calendar Route', function () {
         responseMock = {
             render: sinon.stub()
         };
-
         calendarMock = {
             fetch: sinon.stub()
         };
-
         calendarMock.fetch.yields(sampleEvents);
         route.setModel(calendarMock);
+
+    });
+
+    beforeEach(function () {
+
+        responseMock.render.reset();
+        calendarMock.fetch.reset();
 
     });
 
@@ -33,13 +38,6 @@ describe('Calendar Route', function () {
     });
 
     describe('getCalendar()', function () {
-
-        beforeEach(function () {
-
-            responseMock.render.reset();
-            calendarMock.fetch.reset();
-
-        });
 
         it('should fetch data and render a response', function (done) {
 
@@ -54,7 +52,11 @@ describe('Calendar Route', function () {
 
         });
 
-        it('should fetch a single event adn render a response', function (done) {
+    });
+
+    describe('getEvent()', function() {
+
+        it('should fetch a single event and render a response', function (done) {
 
             calendarMock.fetch.yields({ title: 'Snow Face Concert' });
 

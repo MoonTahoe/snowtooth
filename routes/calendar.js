@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var calendarModel = require('../models/calendar');
 
-var dataModel = calendarModel;
+var dataModel = calendarModel
+var model = dataModel;
 
 function getCalendar(req, res) {
-    dataModel.fetch(function(events) {
+    model.fetch(function(events) {
         res.render('calendar', {
             title: 'Events at Snowtooth',
             description: 'When the skiing is over the fun begins, check out these awesome events',
@@ -15,7 +16,7 @@ function getCalendar(req, res) {
 }
 
 function getEvent(req, res) {
-    dataModel.fetch(req.params.title.replace(/-/g,' '), function(event) {
+    model.fetch(req.params.title.replace(/-/g,' '), function(event) {
         res.render('event', event);
     });
 }
@@ -30,9 +31,9 @@ module.exports = {
         event: getEvent
     },
     setModel: function(m) {
-        dataModel = m;
+        model = m;
     },
     resetModel: function() {
-        dataModel = calendarModel;
+        model = dataModel;
     }
 };

@@ -1,28 +1,39 @@
 var express = require('express');
 var router = express.Router();
-var news = require('../models/news');
+var newsModel = require('../models/news');
 
-/* GET users listing. */
-router.get('/', function(req, res) {
+var dataModel = newsModel
+var model = dataModel;
 
-    news.fetch(function(articles) {
-
+function getNews(req, res) {
+    model.fetch(function(articles) {
         res.render('news', {
             title: 'Snowtooth News',
             description: 'Check out what is happening around the mountian',
             news: articles
         });
-
     });
+}
 
-});
-
-router.get('/:title', function(req, res) {
-
-    news.fetch(req.params.title.replace(/-/g, ' '), function(article) {
+function getArticle(req, res) {
+    model.fetch(req.params.title.replace(/-/g, ' '), function(article) {
         res.render('article', article);
     });
+}
 
-});
+router.get('/', getNews);
+router.get('/:title', getArticle);
 
-module.exports = router;
+module.exports = {
+    router: router,
+    get: {
+        news: getNews,
+        article: getArticle
+    },
+    setModel: function(m) {
+        model = m;
+    },
+    resetModel: function() {
+        model = dataModel;
+    }
+}

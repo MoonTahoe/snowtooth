@@ -10,10 +10,10 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/snowtooth');
 
 //Requireing our routes
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var news = require('./routes/news');
-var calendar = require('./routes/calendar');
+var routes = require('./routes/index').router;
+var users = require('./routes/users').router;
+var news = require('./routes/news').router;
+var calendar = require('./routes/calendar').router;
 
 var app = express();
 
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Our Main Routes
 app.use('/', routes);
 app.use('/users', users);
-app.use('/calendar', calendar.router);
+app.use('/calendar', calendar);
 app.use('/news', news);
 
 /// catch 404 and forward to error handler
