@@ -78,14 +78,6 @@ describe('Calendar Model', function () {
             calendar.fetch(2, function (event) {
                 event.should.be.instanceOf(Array).and.have.property('length', 4);
 
-                //
-                //  TODO: Test to see that sort was called with a value { 'start': 1 }
-                //
-
-                //
-                //  TODO: Test to see that limit was called with a value of (2)
-                //
-
                 modelMock.find.called.should.be.ok;
                 modelMock.sort.calledOn(modelMock).should.be.ok;
                 modelMock.sort.calledWith({ 'start': 1 }).should.be.ok;
