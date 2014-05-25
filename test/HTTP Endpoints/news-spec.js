@@ -9,7 +9,7 @@ describe('News Page', function () {
     var $;
 
     it('should GET HTML', function (done) {
-        request(app).get('/calendar')
+        request(app).get('/news')
             .expect('Content-Type', 'text/html; charset=utf-8')
             .expect(200)
             .end(function (err, res) {
@@ -18,6 +18,23 @@ describe('News Page', function () {
                 done();
             });
     });
+
+    it('should return JSON news on AJAX request', function(done) {
+
+        request(app)
+            .get('/news')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', 'application/json')
+            .expect(200)
+            .end(function(err, response) {
+                if (err) throw err;
+                response.should.be.ok;
+                response.should.be.instanceOf(Array);
+                done();
+            });
+
+    });
+
     it('should contain at least 1 news article', function (done) {
         $('article').length.should.be.above(0);
         done();
@@ -45,6 +62,23 @@ describe('News Page', function () {
                         });
 
                 });
+
+                it('should return JSON article "' + article.title + '" on AJAX request', function(done) {
+
+                    request(app)
+                        .get('/news/' + article.title.replace(/ /g, '-'))
+                        .set('Accept', 'application/json')
+                        .expect('Content-Type', 'application/json')
+                        .expect(200)
+                        .end(function(err, response) {
+                            if (err) throw err;
+                            response.should.be.ok;
+                            response.should.be.instanceOf(Array);
+                            done();
+                        });
+
+                });
+
                 it('should display the title', function () {
                     $('.news-article>h1:first-child').text().should.equal(article.title);
                 });

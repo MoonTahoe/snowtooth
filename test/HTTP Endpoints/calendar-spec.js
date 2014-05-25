@@ -18,6 +18,23 @@ describe('Calendar Page', function () {
                 done();
             });
     });
+
+    it('should return JSON calendar on AJAX request', function(done) {
+
+        request(app)
+            .get('/calendar')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', 'application/json')
+            .expect(200)
+            .end(function(err, response) {
+                if (err) throw err;
+                response.should.be.ok;
+                response.should.be.instanceOf(Array);
+                done();
+            });
+
+    });
+
     it('should contain at least 4 events', function (done) {
         $('article.event-item').length.should.be.above(3);
         done();
@@ -44,6 +61,23 @@ describe('Calendar Page', function () {
                         });
 
                 });
+
+                it('should return JSON event "' + event.id + '" on AJAX request', function(done) {
+
+                    request(app)
+                        .get('/calendar/' + event.title.replace(/ /g, '-'))
+                        .set('Accept', 'application/json')
+                        .expect('Content-Type', 'application/json')
+                        .expect(200)
+                        .end(function(err, response) {
+                            if (err) throw err;
+                            response.should.be.ok;
+                            response.should.be.instanceOf(Array);
+                            done();
+                        });
+
+                });
+
                 it('should display the title"' + event.title + '"', function () {
                     $('article>h1:first-child').text().should.equal(event.title);
                 });
@@ -68,6 +102,5 @@ describe('Calendar Page', function () {
 
         });
     });
-
 
 });
