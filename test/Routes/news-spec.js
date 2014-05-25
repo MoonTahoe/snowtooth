@@ -47,7 +47,7 @@ describe('News Route', function () {
             newsMock.fetch.called.should.be.ok;
             responseMock.render.calledWith('news', {
                 title: 'Snowtooth News',
-                description: 'Check out what is happening around the mountian',
+                description: 'Check out what is happening around the mountain',
                 news: sampleArticles
             }).should.be.ok;
             done();

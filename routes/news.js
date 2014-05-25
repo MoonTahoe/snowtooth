@@ -6,18 +6,28 @@ var dataModel = newsModel
 var model = dataModel;
 
 function getNews(req, res) {
-    model.fetch(function(articles) {
-        res.render('news', {
-            title: 'Snowtooth News',
-            description: 'Check out what is happening around the mountian',
-            news: articles
-        });
+    model.fetch(function (articles) {
+        if (req.ajax) {
+            res.status = 200;
+            res.send(articles);
+        } else {
+            res.render('news', {
+                title: 'Snowtooth News',
+                description: 'Check out what is happening around the mountain',
+                news: articles
+            });
+        }
     });
 }
 
 function getArticle(req, res) {
-    model.fetch(req.params.title.replace(/-/g, ' '), function(article) {
-        res.render('article', article);
+    model.fetch(req.params.title.replace(/-/g, ' '), function (article) {
+        if (req.ajax) {
+            res.status = 200;
+            res.send(article);
+        } else {
+            res.render('article', article);
+        }
     });
 }
 
@@ -30,10 +40,10 @@ module.exports = {
         news: getNews,
         article: getArticle
     },
-    setModel: function(m) {
+    setModel: function (m) {
         model = m;
     },
-    resetModel: function() {
+    resetModel: function () {
         model = dataModel;
     }
 }

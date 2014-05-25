@@ -11,29 +11,37 @@ var dataModels = {
 var models = dataModels;
 
 function getIndex(req, res) {
+
     models.home.fetch(function (imgs) {
-        models.calendar.fetch(4, function(events) {
-            res.render('index', {
-                title: 'Snowtooth Mountain',
-                description: 'The official website for the snowtooth ski resort',
-                imgs: imgs,
-                calendar: events
+
+        if (req.ajax) {
+            res.status = 200;
+            res.send(imgs);
+        } else {
+            models.calendar.fetch(4, function (events) {
+                res.render('index', {
+                    title: 'Snowtooth Mountain',
+                    description: 'The official website for the snowtooth ski resort',
+                    imgs: imgs,
+                    calendar: events
+                });
             });
-        });
+        }
+
     });
 }
 
 router.get('/', getIndex);
 
-module.exports ={
+module.exports = {
     router: router,
     get: {
         index: getIndex
     },
-    setModel: function(m) {
+    setModel: function (m) {
         models = m;
     },
-    resetModel: function() {
+    resetModel: function () {
         models = dataModels;
     }
 }

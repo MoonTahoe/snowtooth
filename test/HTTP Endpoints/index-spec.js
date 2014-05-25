@@ -9,6 +9,7 @@ describe('Home Page', function () {
 
     it('should GET HTML', function (done) {
         request(app).get('/')
+            .set('accept', 'text/html')
             .expect('Content-Type', 'text/html; charset=utf-8')
             .expect(200)
             .end(function (err, res) {
@@ -16,6 +17,21 @@ describe('Home Page', function () {
                 $ = cheerio.load(res.text);
                 done();
             });
+    });
+
+    it('should return JSON Home images on AJAX request', function(done) {
+
+        request(app)
+            .get('/')
+            .set('accept', 'application/json')
+            .expect('Content-Type', 'application/json')
+            .expect(200)
+            .end(function(err, response) {
+                if (err) throw err;
+                response.should.be.instanceOf(Object);
+                done();
+            });
+
     });
 
     it('should contain at least one marketing box', function (done) {
@@ -34,22 +50,6 @@ describe('Home Page', function () {
         bgImage = bgImage.replace("'url('", "").replace("')","");
         bgImage.length.should.be.above(0);
         done();
-    });
-
-    it('should return JSON Home images on AJAX request', function(done) {
-
-        request(app)
-            .get('/')
-            .set('Accept', 'application/json')
-            .expect('Content-Type', 'application/json')
-            .expect(200)
-            .end(function(err, response) {
-                if (err) throw err;
-                response.should.be.ok;
-                response.should.be.instanceOf(Array);
-                done();
-            });
-
     });
 
 });

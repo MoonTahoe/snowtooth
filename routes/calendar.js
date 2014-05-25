@@ -7,17 +7,27 @@ var model = dataModel;
 
 function getCalendar(req, res) {
     model.fetch(function(events) {
-        res.render('calendar', {
-            title: 'Events at Snowtooth',
-            description: 'When the skiing is over the fun begins, check out these awesome events',
-            events: events
-        });
+        if (req.ajax) {
+            res.status = 200;
+            res.send(events);
+        } else {
+            res.render('calendar', {
+                title: 'Events at Snowtooth',
+                description: 'When the skiing is over the fun begins, check out these awesome events',
+                events: events
+            });
+        }
     });
 }
 
 function getEvent(req, res) {
     model.fetch(req.params.title.replace(/-/g,' '), function(event) {
-        res.render('event', event);
+        if (req.ajax) {
+            res.status = 200;
+            res.send(event);
+        } else {
+            res.render('event', event);
+        }
     });
 }
 

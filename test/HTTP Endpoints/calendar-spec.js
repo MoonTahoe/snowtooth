@@ -10,6 +10,7 @@ describe('Calendar Page', function () {
 
     it('should GET HTML', function (done) {
         request(app).get('/calendar')
+            .set('accept', 'text/html')
             .expect('Content-Type', 'text/html; charset=utf-8')
             .expect(200)
             .end(function (err, res) {
@@ -23,13 +24,13 @@ describe('Calendar Page', function () {
 
         request(app)
             .get('/calendar')
-            .set('Accept', 'application/json')
+            .set('accept', 'application/json')
             .expect('Content-Type', 'application/json')
             .expect(200)
             .end(function(err, response) {
                 if (err) throw err;
                 response.should.be.ok;
-                response.should.be.instanceOf(Array);
+                response.should.be.instanceOf(Object);
                 done();
             });
 
@@ -52,6 +53,7 @@ describe('Calendar Page', function () {
                 it('should GET HTML', function (done) {
 
                     request(app).get('/calendar/' + event.title.replace(/ /g, '-'))
+                        .set('accept', 'text/html')
                         .expect('Content-Type', 'text/html; charset=utf-8')
                         .expect(200)
                         .end(function (err, res) {
@@ -66,13 +68,13 @@ describe('Calendar Page', function () {
 
                     request(app)
                         .get('/calendar/' + event.title.replace(/ /g, '-'))
-                        .set('Accept', 'application/json')
+                        .set('accept', 'application/json')
                         .expect('Content-Type', 'application/json')
                         .expect(200)
                         .end(function(err, response) {
                             if (err) throw err;
                             response.should.be.ok;
-                            response.should.be.instanceOf(Array);
+                            response.should.be.instanceOf(Object);
                             done();
                         });
 

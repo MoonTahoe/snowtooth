@@ -10,6 +10,7 @@ describe('News Page', function () {
 
     it('should GET HTML', function (done) {
         request(app).get('/news')
+            .set('accept', 'text/html')
             .expect('Content-Type', 'text/html; charset=utf-8')
             .expect(200)
             .end(function (err, res) {
@@ -23,13 +24,13 @@ describe('News Page', function () {
 
         request(app)
             .get('/news')
-            .set('Accept', 'application/json')
+            .set('accept', 'application/json')
             .expect('Content-Type', 'application/json')
             .expect(200)
             .end(function(err, response) {
                 if (err) throw err;
                 response.should.be.ok;
-                response.should.be.instanceOf(Array);
+                response.should.be.instanceOf(Object);
                 done();
             });
 
@@ -53,6 +54,7 @@ describe('News Page', function () {
                 it('should GET HTML', function (done) {
 
                     request(app).get('/news/' + article.title.replace(/ /g, '-'))
+                        .set('accept', 'text/html')
                         .expect('Content-Type', 'text/html; charset=utf-8')
                         .expect(200)
                         .end(function (err, res) {
@@ -67,13 +69,13 @@ describe('News Page', function () {
 
                     request(app)
                         .get('/news/' + article.title.replace(/ /g, '-'))
-                        .set('Accept', 'application/json')
+                        .set('accept', 'application/json')
                         .expect('Content-Type', 'application/json')
                         .expect(200)
                         .end(function(err, response) {
                             if (err) throw err;
                             response.should.be.ok;
-                            response.should.be.instanceOf(Array);
+                            response.should.be.instanceOf(Object);
                             done();
                         });
 
