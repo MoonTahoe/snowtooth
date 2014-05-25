@@ -16,7 +16,8 @@ describe('News Route', function () {
     before(function () {
 
         responseMock = {
-            render: sinon.stub()
+            render: sinon.stub(),
+            send: sinon.stub()
         };
 
         newsMock = {
@@ -41,7 +42,7 @@ describe('News Route', function () {
 
     describe('getNews()', function () {
 
-        it('should fetch data and render a response', function (done) {
+        it('should fetch data and render a HTML response', function (done) {
 
             route.get.news({}, responseMock);
             newsMock.fetch.called.should.be.ok;
@@ -54,19 +55,33 @@ describe('News Route', function () {
 
         });
 
+        it('should fetch data and render a AJAX response', function(done) {
+
+            route.get.news({ ajax: true }, responseMock);
+            newsMock.fetch.called.should.be.ok;
+            responseMock.send.calledWith(sampleArticles).should.be.ok;
+            done();
+        });
+
     });
 
     describe('getArticle()', function () {
 
-        it('should fetch a single article and render a response', function (done) {
+        var req;
+
+        before(function() {
 
             newsMock.fetch.yields({ title: 'Snow Face Concert' });
 
-            var req = {
+            req = {
                 params: {
                     title: 'Snow-Face-Concert'
                 }
             };
+
+        });
+
+        it('should fetch a single article and render a HTML response', function (done) {
 
             route.get.article(req, responseMock);
             newsMock.fetch.called.should.be.ok;
@@ -76,6 +91,16 @@ describe('News Route', function () {
             done();
         })
 
+        it('should fetch a single article and render a AJAX response', function(done) {
+
+            req.ajax = true;
+            route.get.article(req, responseMock);
+            newsMock.fetch.called.should.be.ok;
+            newsMock.fetch.calledWith('Snow Face Concert').should.be.ok;
+            responseMock.send.calledWith({ title: 'Snow Face Concert' }).should.be.ok;
+            done();
+
+        });
 
     });
 
