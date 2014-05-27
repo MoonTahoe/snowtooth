@@ -4,12 +4,16 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session')
 var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
 
-//  Connect to the apps database
-mongoose.connect('mongodb://localhost/snowtooth');
+//Database configuration and connection
+var dbConfig = require('./config/database.js');
+mongoose.connect(dbConfig.url);
 
-//Requireing our routes
+// Requiring our routes
 var routes = require('./routes/index').router;
 var users = require('./routes/users').router;
 var news = require('./routes/news').router;
@@ -17,7 +21,7 @@ var calendar = require('./routes/calendar').router;
 
 var app = express();
 
-// view engine setup
+// Setup View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -26,10 +30,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+app.use(session({ secret: 'rippersgonnaripsnowtoothusa' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Adding JSON for CORS Request
-
 app.use(function(req, res, next) {
 
     if (req.headers.accept.indexOf('application/json') != -1 || req.headers.accept.indexOf('text/javascript') != -1) {
@@ -57,7 +64,7 @@ app.use(function(req, res, next) {
 
 // Our Main Routes
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users)(app, passport);
 app.use('/calendar', calendar);
 app.use('/news', news);
 
