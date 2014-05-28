@@ -66,11 +66,36 @@ header {
     text-decoration: underline;
 }
 
-form {
-    float: right;
-    padding: 1em;
+section>form {
+    float: none;
+    clear: both;
+}
+section#related {
+    position: relative;
+}
+section#related>form {
+    /* float: right; */
+    /* padding: 1em; */ 
+    position: absolute;
+    right: 15px;
+    top: 9px;
+}
+section#related>form>button {
+    display: inline;
 }
 
+
+form>label {
+    display: block;
+}
+form>button {
+    display: block;
+}
+
+form>p {
+    font-size: 10px;
+    margin-top: 20px;
+}
 
 header>img:last-child {
     position: relative;
@@ -102,6 +127,7 @@ nav a:last-child {
     border-right: none;
 }
 
+form.main,
 section.main {
     padding: 1em;
     background-color: white;

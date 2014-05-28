@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include parts/head %>
+</head>
+
+<body>
+<div id="wrapper">
+    <%- include parts/nav %>
+
+    <%- include parts/message %>
+
+    <section id="register" class="main">
+        <h1>Create an Account</h1>
+        <form action="/register" method="post">
+
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" />
+
+            <label for="password">Create Password</label>
+            <input id="password" name="password" type="password" />
+
+            <label for="password-confirm">Confirm Password</label>
+            <input id="password-confirm" name="password-confirm" type="password" />
+
+            <button>Login</button>
+
+            <p>Already have an account? <a href="/login">Log In</a></p>
+
+        </form>
+    </section>
+
+    <%- include parts/footer %>
+</div>
+</body>
+
+</html>

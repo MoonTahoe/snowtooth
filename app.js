@@ -14,7 +14,7 @@ var dbConfig = require('./config/database.js');
 mongoose.connect(dbConfig.url);
 
 // Requiring our routes
-var routes = require('./routes/index').router;
+var home = require('./routes/index').router;
 var users = require('./routes/users').router;
 var news = require('./routes/news').router;
 var calendar = require('./routes/calendar').router;
@@ -63,8 +63,8 @@ app.use(function(req, res, next) {
 });
 
 // Our Main Routes
-app.use('/', routes);
-//app.use('/users', users)(app, passport);
+app.use('/', home);
+app.use('/user', users); //(app, passport);
 app.use('/calendar', calendar);
 app.use('/news', news);
 
