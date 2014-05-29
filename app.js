@@ -9,13 +9,18 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
+// Setup passport configuration for user management
+var passportConfig = require('./config/passport')(passport);
+
 //Database configuration and connection
 var dbConfig = require('./config/database.js');
 mongoose.connect(dbConfig.url);
 
+
+
 // Requiring our routes
 var home = require('./routes/index').router;
-var users = require('./routes/users').router;
+var users = require('./routes/users')(passport).router;
 var news = require('./routes/news').router;
 var calendar = require('./routes/calendar').router;
 
@@ -64,7 +69,7 @@ app.use(function(req, res, next) {
 
 // Our Main Routes
 app.use('/', home);
-app.use('/user', users); //(app, passport);
+app.use('/user', users);
 app.use('/calendar', calendar);
 app.use('/news', news);
 

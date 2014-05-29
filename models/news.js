@@ -39,9 +39,9 @@ module.exports = {
 
         if (title) {
 
-            model.findOne({ 'title': title }, function (err, articles) {
+            model.findOne({ 'title': title }, function (err, article) {
                 if (err) throw err;
-                done(articles);
+                done(article);
             });
 
         } else if (count) {
